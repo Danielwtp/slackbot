@@ -1,9 +1,10 @@
 # encoding=utf8
+
+from slackclient import SlackClient
+import time
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
-from slackclient import SlackClient
-import time
 
 class slackComunucation(object):
     def __init__(self):
