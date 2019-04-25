@@ -2,13 +2,12 @@
 
 from slackclient import SlackClient
 import time
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+botUserOAuthAccessToken = "xoxb-119695469991-604323137475-izd3pohyGyx0IGCZPwQSXI3d"
+
 
 class slackComunucation(object):
     def __init__(self):
-        self.slack_client = SlackClient("xoxb-119695469991-604323137475-jrL9EMLRGhPauv00D1ziVKPH")
+        self.slack_client = SlackClient(botUserOAuthAccessToken)
         self.appName = "monitorationbot"
 
     def slackConnect(self):
