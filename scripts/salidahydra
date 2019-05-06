@@ -1,3 +1,5 @@
+virt-manager --no-fork --debug --connect=qemu+ssh://admins@jupiter.ls.fi.upm.es:2222/system &> /home/dano/Documentos/slackbot/scripts/salidahydra
+
 
 
 
