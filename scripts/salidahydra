@@ -1,0 +1,363 @@
+virt-manager --no-fork --debug --connect=qemu+ssh://admins@jupiter.ls.fi.upm.es:2222/system &> /home/dano/Documentos/slackbot/scripts/salidahydra
+
+
+
+
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (cli:258) Launched with command line: /usr/share/virt-manager/virt-manager --no-fork --debug --connect=qemu+ssh://admins@jupiter.ls.fi.upm.es:2222/system
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (virt-manager:182) virt-manager version: 1.4.0
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (virt-manager:183) virtManager import: <module 'virtManager' from '/usr/share/virt-manager/virtManager/__init__.pyc'>
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (virt-manager:213) PyGObject version: 3.22.0
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (virt-manager:217) GTK version: 3.22.11
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (engine:496) libguestfs inspection support: False
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (systray:156) Showing systray: False
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (engine:1029) processing cli command uri=qemu+ssh://admins@jupiter.ls.fi.upm.es:2222/system show_window= domain=
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (manager:203) Showing manager
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (engine:401) window counter incremented to 1
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (engine:161) Loading stored URIs:
+qemu+ssh://admins@jupiter.ls.fi.upm.es:2222/system
+qemu:///system
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (engine:140) Initial gtkapplication activated
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (connection:569) conn=qemu+ssh://admins@jupiter.ls.fi.upm.es:2222/system changed to state=Conectando
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (connection:888) Scheduling background open thread for qemu+ssh://admins@jupiter.ls.fi.upm.es:2222/system
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (connection:569) conn=qemu:///system changed to state=Conectando
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (connection:888) Scheduling background open thread for qemu:///system
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (connection:569) conn=qemu:///system changed to state=Desconectado
+[lun, 06 may 2019 11:51:03 virt-manager 6248] DEBUG (error:99) error dialog message:
+summary=No se pudo conectar a libvirt.
+
+authentication unavailable: no polkit agent available to authenticate action 'org.libvirt.unix.manage'
+details=No se pudo conectar a libvirt.
+
+authentication unavailable: no polkit agent available to authenticate action 'org.libvirt.unix.manage'
+
+Libvirt URI is: qemu:///system
+
+Traceback (most recent call last):
+  File "/usr/share/virt-manager/virtManager/connection.py", line 904, in _do_open
+    self._backend.open(self._do_creds_password)
+  File "/usr/share/virt-manager/virtinst/connection.py", line 148, in open
+    open_flags)
+  File "/usr/lib/python2.7/dist-packages/libvirt.py", line 105, in openAuth
+    if ret is None:raise libvirtError('virConnectOpenAuth() failed')
+libvirtError: authentication unavailable: no polkit agent available to authenticate action 'org.libvirt.unix.manage'
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:938) libvirt version=3000000
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:940) daemon version=3000000
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:941) conn version=2008001
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:943) qemu+ssh://admins@jupiter.ls.fi.upm.es:2222/system capabilities:
+<capabilities>
+
+  <host>
+    <uuid>49434d53-0200-9069-2500-6990250054e6</uuid>
+    <cpu>
+      <arch>x86_64</arch>
+      <model>Nehalem</model>
+      <vendor>Intel</vendor>
+      <topology sockets="1" cores="6" threads="2"/>
+      <feature name="vme"/>
+      <feature name="ds"/>
+      <feature name="acpi"/>
+      <feature name="ss"/>
+      <feature name="ht"/>
+      <feature name="tm"/>
+      <feature name="pbe"/>
+      <feature name="dtes64"/>
+      <feature name="monitor"/>
+      <feature name="ds_cpl"/>
+      <feature name="vmx"/>
+      <feature name="smx"/>
+      <feature name="est"/>
+      <feature name="tm2"/>
+      <feature name="xtpr"/>
+      <feature name="pdcm"/>
+      <feature name="pcid"/>
+      <feature name="dca"/>
+      <feature name="arat"/>
+      <feature name="pdpe1gb"/>
+      <feature name="rdtscp"/>
+      <feature name="invtsc"/>
+      <pages unit="KiB" size="4"/>
+      <pages unit="KiB" size="2048"/>
+      <pages unit="KiB" size="1048576"/>
+    </cpu>
+    <power_management>
+      <suspend_mem/>
+      <suspend_disk/>
+      <suspend_hybrid/>
+    </power_management>
+    <migration_features>
+      <live/>
+      <uri_transports>
+        <uri_transport>tcp</uri_transport>
+        <uri_transport>rdma</uri_transport>
+      </uri_transports>
+    </migration_features>
+    <topology>
+      <cells num="1">
+        <cell id="0">
+          <memory unit="KiB">49455272</memory>
+          <pages unit="KiB" size="4">12363818</pages>
+          <pages unit="KiB" size="2048">0</pages>
+          <pages unit="KiB" size="1048576">0</pages>
+          <distances>
+            <sibling id="0" value="10"/>
+          </distances>
+          <cpus num="12">
+            <cpu id="0" socket_id="0" core_id="0" siblings="0,6"/>
+            <cpu id="1" socket_id="0" core_id="1" siblings="1,7"/>
+            <cpu id="2" socket_id="0" core_id="2" siblings="2,8"/>
+            <cpu id="3" socket_id="0" core_id="8" siblings="3,9"/>
+            <cpu id="4" socket_id="0" core_id="9" siblings="4,10"/>
+            <cpu id="5" socket_id="0" core_id="10" siblings="5,11"/>
+            <cpu id="6" socket_id="0" core_id="0" siblings="0,6"/>
+            <cpu id="7" socket_id="0" core_id="1" siblings="1,7"/>
+            <cpu id="8" socket_id="0" core_id="2" siblings="2,8"/>
+            <cpu id="9" socket_id="0" core_id="8" siblings="3,9"/>
+            <cpu id="10" socket_id="0" core_id="9" siblings="4,10"/>
+            <cpu id="11" socket_id="0" core_id="10" siblings="5,11"/>
+          </cpus>
+        </cell>
+      </cells>
+    </topology>
+    <secmodel>
+      <model>none</model>
+      <doi>0</doi>
+    </secmodel>
+    <secmodel>
+      <model>dac</model>
+      <doi>0</doi>
+      <baselabel type="kvm">+105:+109</baselabel>
+      <baselabel type="qemu">+105:+109</baselabel>
+    </secmodel>
+  </host>
+
+  <guest>
+    <os_type>hvm</os_type>
+    <arch name="i686">
+      <wordsize>32</wordsize>
+      <emulator>/usr/bin/qemu-system-i386</emulator>
+      <machine maxCpus="255">pc-i440fx-2.8</machine>
+      <machine canonical="pc-i440fx-2.8" maxCpus="255">pc</machine>
+      <machine maxCpus="255">pc-0.12</machine>
+      <machine maxCpus="255">pc-i440fx-2.4</machine>
+      <machine maxCpus="255">pc-1.3</machine>
+      <machine maxCpus="255">pc-q35-2.7</machine>
+      <machine maxCpus="255">pc-q35-2.6</machine>
+      <machine maxCpus="1">xenpv</machine>
+      <machine maxCpus="255">pc-i440fx-1.7</machine>
+      <machine maxCpus="255">pc-i440fx-1.6</machine>
+      <machine maxCpus="255">pc-i440fx-2.7</machine>
+      <machine maxCpus="255">pc-0.11</machine>
+      <machine maxCpus="255">pc-i440fx-2.3</machine>
+      <machine maxCpus="255">pc-0.10</machine>
+      <machine maxCpus="255">pc-1.2</machine>
+      <machine maxCpus="255">pc-i440fx-2.2</machine>
+      <machine maxCpus="1">isapc</machine>
+      <machine maxCpus="255">pc-q35-2.5</machine>
+      <machine maxCpus="128">xenfv</machine>
+      <machine maxCpus="255">pc-0.15</machine>
+      <machine maxCpus="255">pc-0.14</machine>
+      <machine maxCpus="255">pc-i440fx-1.5</machine>
+      <machine maxCpus="255">pc-i440fx-2.6</machine>
+      <machine maxCpus="255">pc-i440fx-1.4</machine>
+      <machine maxCpus="255">pc-i440fx-2.5</machine>
+      <machine maxCpus="255">pc-1.1</machine>
+      <machine maxCpus="255">pc-i440fx-2.1</machine>
+      <machine maxCpus="288">pc-q35-2.8</machine>
+      <machine canonical="pc-q35-2.8" maxCpus="288">q35</machine>
+      <machine maxCpus="255">pc-1.0</machine>
+      <machine maxCpus="255">pc-i440fx-2.0</machine>
+      <machine maxCpus="255">pc-q35-2.4</machine>
+      <machine maxCpus="255">pc-0.13</machine>
+      <domain type="qemu">
+        <emulator>/usr/bin/qemu-system-i386</emulator>
+      </domain>
+      <domain type="kvm">
+        <emulator>/usr/bin/kvm</emulator>
+        <machine maxCpus="255">pc-i440fx-2.8</machine>
+        <machine canonical="pc-i440fx-2.8" maxCpus="255">pc</machine>
+        <machine maxCpus="255">pc-0.12</machine>
+        <machine maxCpus="255">pc-i440fx-2.4</machine>
+        <machine maxCpus="255">pc-1.3</machine>
+        <machine maxCpus="255">pc-q35-2.7</machine>
+        <machine maxCpus="255">pc-q35-2.6</machine>
+        <machine maxCpus="1">xenpv</machine>
+        <machine maxCpus="255">pc-i440fx-1.7</machine>
+        <machine maxCpus="255">pc-i440fx-1.6</machine>
+        <machine maxCpus="255">pc-i440fx-2.7</machine>
+        <machine maxCpus="255">pc-0.11</machine>
+        <machine maxCpus="255">pc-i440fx-2.3</machine>
+        <machine maxCpus="255">pc-0.10</machine>
+        <machine maxCpus="255">pc-1.2</machine>
+        <machine maxCpus="255">pc-i440fx-2.2</machine>
+        <machine maxCpus="1">isapc</machine>
+        <machine maxCpus="255">pc-q35-2.5</machine>
+        <machine maxCpus="128">xenfv</machine>
+        <machine maxCpus="255">pc-0.15</machine>
+        <machine maxCpus="255">pc-0.14</machine>
+        <machine maxCpus="255">pc-i440fx-1.5</machine>
+        <machine maxCpus="255">pc-i440fx-2.6</machine>
+        <machine maxCpus="255">pc-i440fx-1.4</machine>
+        <machine maxCpus="255">pc-i440fx-2.5</machine>
+        <machine maxCpus="255">pc-1.1</machine>
+        <machine maxCpus="255">pc-i440fx-2.1</machine>
+        <machine maxCpus="288">pc-q35-2.8</machine>
+        <machine canonical="pc-q35-2.8" maxCpus="288">q35</machine>
+        <machine maxCpus="255">pc-1.0</machine>
+        <machine maxCpus="255">pc-i440fx-2.0</machine>
+        <machine maxCpus="255">pc-q35-2.4</machine>
+        <machine maxCpus="255">pc-0.13</machine>
+      </domain>
+    </arch>
+    <features>
+      <cpuselection/>
+      <deviceboot/>
+      <disksnapshot default="on" toggle="no"/>
+      <acpi default="on" toggle="yes"/>
+      <apic default="on" toggle="no"/>
+      <pae/>
+      <nonpae/>
+    </features>
+  </guest>
+
+  <guest>
+    <os_type>hvm</os_type>
+    <arch name="x86_64">
+      <wordsize>64</wordsize>
+      <emulator>/usr/bin/qemu-system-x86_64</emulator>
+      <machine maxCpus="255">pc-i440fx-2.8</machine>
+      <machine canonical="pc-i440fx-2.8" maxCpus="255">pc</machine>
+      <machine maxCpus="255">pc-0.12</machine>
+      <machine maxCpus="255">pc-i440fx-2.4</machine>
+      <machine maxCpus="255">pc-1.3</machine>
+      <machine maxCpus="255">pc-q35-2.7</machine>
+      <machine maxCpus="255">pc-q35-2.6</machine>
+      <machine maxCpus="1">xenpv</machine>
+      <machine maxCpus="255">pc-i440fx-1.7</machine>
+      <machine maxCpus="255">pc-i440fx-1.6</machine>
+      <machine maxCpus="255">pc-i440fx-2.7</machine>
+      <machine maxCpus="255">pc-0.11</machine>
+      <machine maxCpus="255">pc-i440fx-2.3</machine>
+      <machine maxCpus="255">pc-0.10</machine>
+      <machine maxCpus="255">pc-1.2</machine>
+      <machine maxCpus="255">pc-i440fx-2.2</machine>
+      <machine maxCpus="1">isapc</machine>
+      <machine maxCpus="255">pc-q35-2.5</machine>
+      <machine maxCpus="128">xenfv</machine>
+      <machine maxCpus="255">pc-0.15</machine>
+      <machine maxCpus="255">pc-0.14</machine>
+      <machine maxCpus="255">pc-i440fx-1.5</machine>
+      <machine maxCpus="255">pc-i440fx-2.6</machine>
+      <machine maxCpus="255">pc-i440fx-1.4</machine>
+      <machine maxCpus="255">pc-i440fx-2.5</machine>
+      <machine maxCpus="255">pc-1.1</machine>
+      <machine maxCpus="255">pc-i440fx-2.1</machine>
+      <machine maxCpus="288">pc-q35-2.8</machine>
+      <machine canonical="pc-q35-2.8" maxCpus="288">q35</machine>
+      <machine maxCpus="255">pc-1.0</machine>
+      <machine maxCpus="255">pc-i440fx-2.0</machine>
+      <machine maxCpus="255">pc-q35-2.4</machine>
+      <machine maxCpus="255">pc-0.13</machine>
+      <domain type="qemu">
+        <emulator>/usr/bin/qemu-system-x86_64</emulator>
+      </domain>
+      <domain type="kvm">
+        <emulator>/usr/bin/kvm</emulator>
+        <machine maxCpus="255">pc-i440fx-2.8</machine>
+        <machine canonical="pc-i440fx-2.8" maxCpus="255">pc</machine>
+        <machine maxCpus="255">pc-0.12</machine>
+        <machine maxCpus="255">pc-i440fx-2.4</machine>
+        <machine maxCpus="255">pc-1.3</machine>
+        <machine maxCpus="255">pc-q35-2.7</machine>
+        <machine maxCpus="255">pc-q35-2.6</machine>
+        <machine maxCpus="1">xenpv</machine>
+        <machine maxCpus="255">pc-i440fx-1.7</machine>
+        <machine maxCpus="255">pc-i440fx-1.6</machine>
+        <machine maxCpus="255">pc-i440fx-2.7</machine>
+        <machine maxCpus="255">pc-0.11</machine>
+        <machine maxCpus="255">pc-i440fx-2.3</machine>
+        <machine maxCpus="255">pc-0.10</machine>
+        <machine maxCpus="255">pc-1.2</machine>
+        <machine maxCpus="255">pc-i440fx-2.2</machine>
+        <machine maxCpus="1">isapc</machine>
+        <machine maxCpus="255">pc-q35-2.5</machine>
+        <machine maxCpus="128">xenfv</machine>
+        <machine maxCpus="255">pc-0.15</machine>
+        <machine maxCpus="255">pc-0.14</machine>
+        <machine maxCpus="255">pc-i440fx-1.5</machine>
+        <machine maxCpus="255">pc-i440fx-2.6</machine>
+        <machine maxCpus="255">pc-i440fx-1.4</machine>
+        <machine maxCpus="255">pc-i440fx-2.5</machine>
+        <machine maxCpus="255">pc-1.1</machine>
+        <machine maxCpus="255">pc-i440fx-2.1</machine>
+        <machine maxCpus="288">pc-q35-2.8</machine>
+        <machine canonical="pc-q35-2.8" maxCpus="288">q35</machine>
+        <machine maxCpus="255">pc-1.0</machine>
+        <machine maxCpus="255">pc-i440fx-2.0</machine>
+        <machine maxCpus="255">pc-q35-2.4</machine>
+        <machine maxCpus="255">pc-0.13</machine>
+      </domain>
+    </arch>
+    <features>
+      <cpuselection/>
+      <deviceboot/>
+      <disksnapshot default="on" toggle="no"/>
+      <acpi default="on" toggle="yes"/>
+      <apic default="on" toggle="no"/>
+    </features>
+  </guest>
+
+</capabilities>
+
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:790) Using domain events
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:827) Using network events
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) network=conwetnet status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) network=proxynet status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) network=management2 status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) network=management status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) interface=lo status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) network=sdhnet status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=redes status=Ejecutándose added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) network=buildnet status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) network=default status=Inactivo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) interface=br0 status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) network=redesnet status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=repo status=Ejecutándose added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) network=testingnet status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) network=reposnet status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=ws01 status=Ejecutándose added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) network=docencianet status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=wc-com01 status=Apagado added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=ism status=Apagado added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=cursos01 status=Ejecutándose added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) pool=default status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=sdh-com status=Ejecutándose added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) pool=backups status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=wc01-new status=Apagado added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=fw02 status=Ejecutándose added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) pool=iso status=Activo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) pool=old_images status=Inactivo added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=wordpress-master status=Apagado added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=wc02 status=Ejecutándose added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=cweb01 status=Apagado added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=wordpress-profesionalismo status=Apagado added
+
+(virt-manager:6248): Gtk-WARNING **: Allocating size to GtkWindow 0x55f982d90a80 without calling gtk_widget_get_preferred_width/height(). How does the code know the size to allocate?
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=wc01 status=Ejecutándose added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=wordpress-concurso status=Apagado added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=build status=Ejecutándose added
+
+(virt-manager:6248): Gtk-WARNING **: Allocating size to GtkWindow 0x55f982d90a80 without calling gtk_widget_get_preferred_width/height(). How does the code know the size to allocate?
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=web01 status=Apagado added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=wordpress-IECISA status=Ejecutándose added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=fw01 status=Ejecutándose added
+
+(virt-manager:6248): Gtk-WARNING **: Allocating size to GtkWindow 0x55f982d90a80 without calling gtk_widget_get_preferred_width/height(). How does the code know the size to allocate?
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=wc-ign01 status=Ejecutándose added
+[lun, 06 may 2019 11:51:04 virt-manager 6248] DEBUG (connection:1052) domain=gae01 status=Apagado added
+[lun, 06 may 2019 11:51:05 virt-manager 6248] DEBUG (connection:569) conn=qemu+ssh://admins@jupiter.ls.fi.upm.es:2222/system changed to state=Activo
+[lun, 06 may 2019 11:51:10 virt-manager 6248] DEBUG (manager:214) Closing manager
+[lun, 06 may 2019 11:51:10 virt-manager 6248] DEBUG (engine:405) window counter decremented to 0
+[lun, 06 may 2019 11:51:10 virt-manager 6248] DEBUG (engine:467) No windows found, requesting app exit
+[lun, 06 may 2019 11:51:10 virt-manager 6248] DEBUG (connection:843) conn.close() uri=qemu+ssh://admins@jupiter.ls.fi.upm.es:2222/system
+[lun, 06 may 2019 11:51:10 virt-manager 6248] DEBUG (connection:569) conn=qemu+ssh://admins@jupiter.ls.fi.upm.es:2222/system changed to state=Desconectado
+[lun, 06 may 2019 11:51:10 virt-manager 6248] DEBUG (engine:491) Exiting app normally.

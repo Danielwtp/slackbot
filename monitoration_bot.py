@@ -1,14 +1,24 @@
 # encoding=utf8
 
 from slackclient import SlackClient
+import imp
 import time
-botUserOAuthAccessToken = "xoxb-119695469991-604323137475-izd3pohyGyx0IGCZPwQSXI3d"
+import sys
+from scripts import backups,hydraServices
+botUserOAuthAccessToken = ""
 
 
 class slackComunucation(object):
     def __init__(self):
         self.slack_client = SlackClient(botUserOAuthAccessToken)
+        self.canal = "CJ381CD2Q"
         self.appName = "monitorationbot"
+        self.backup = False
+        self.today = time.strftime("%Y-%m-%d")
+        self.lastOne = "2019-04-15"
+        self.estadoBackups = True
+        self.mensahito = ""
+        self.estados = hydraServices.servicesCheck()
 
     def slackConnect(self):
         return self.slack_client.rtm_connect()
@@ -53,6 +63,18 @@ class mainFuc(slackComunucation):
         self.slackConnect()
         BOTID = self.getBotID(self.appName)
         while(True):
+        #print(time.strftime("%M"))
+        #if time.strftime("%M") == "00":#cada hora revisa todo.
+            #if not self.lastOne == time.strftime("%Y-%m-%d") and  time.strftime("%H") == "9":#check del backup solo a las 9
+            self.today = time.strftime("%Y-%m-%d")
+            estadoBackups = backups.checkeo(self.today)
+            if backups:
+                self.mensahito = "Backups: UP\n"
+            else:
+                self.mensahito = "Backups: DOWN\n"#FIN backups
+            print(self.estados)
+
+            self.writeToSlack(self.canal, self.mensahito)
             self.decideWheterToRespond(self.parseSlackInput(self.slackReadRTM(), BOTID))
             time.sleep(1)
 
