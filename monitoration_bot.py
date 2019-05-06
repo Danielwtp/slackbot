@@ -18,7 +18,7 @@ class slackComunucation(object):
         self.lastOne = "2019-04-15"
         self.estadoBackups = True
         self.mensahito = ""
-        self.estados = hydraServices.servicesCheck()
+        self.estados = hydraServices.getStatus()
 
     def slackConnect(self):
         return self.slack_client.rtm_connect()
