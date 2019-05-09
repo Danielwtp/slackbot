@@ -72,7 +72,19 @@ class mainFuc(slackComunucation):
                 self.mensahito = "Backups: UP\n"
             else:
                 self.mensahito = "Backups: DOWN\n"#FIN backups
-            print(self.estados)
+            self.estados = hydraServices.getStatus()
+            if self.estados[0]:
+                self.mensahito = self.mensahito + "Repo: UP\n"
+            else:
+                self.mensahito = self.mensahito + "Repo: DOWN\n"
+            if self.estados[1]:
+                self.mensahito = self.mensahito + "Jenkins: UP\n"
+            else:
+                self.mensahito = self.mensahito + "Jenkins: DOWN\n"
+            if self.estados[2]:
+                self.mensahito = self.mensahito + "Artifactory: UP\n"
+            else:
+                self.mensahito = self.mensahito + "Artifactory: DOWN\n"
 
             self.writeToSlack(self.canal, self.mensahito)
             self.decideWheterToRespond(self.parseSlackInput(self.slackReadRTM(), BOTID))
