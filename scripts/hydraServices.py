@@ -8,13 +8,13 @@ def getStatus():
     else:
         repo=False
     if jenkins == "<Response [200]>":
-        repo=True
+        jenkins=True
     else:
-        repo=False
+        jenkins=False
     if artifactory == "<Response [200]>":
-        repo=True
+        artifactory=True
     else:
-        repo=False
+        artifactory=False
     return [repo, jenkins, artifactory]
 
 #"https://repo.conwet.fi.upm.es/users/sign_in").getcode()
