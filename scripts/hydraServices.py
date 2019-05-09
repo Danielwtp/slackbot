@@ -1,17 +1,17 @@
 import requests
 def getStatus():
-    repo = requests.get('https://repo.conwet.fi.upm.es')
-    jenkins = requests.get('https://build.conwet.fi.upm.es/jenkins/')
-    artifactory = requests.get('https://repo.conwet.fi.upm.es/artifactory')
-    if repo == "<Response [200]>":
+    repo = requests.get('https://repo.conwet.fi.upm.es').status_code
+    jenkins = requests.get('https://build.conwet.fi.upm.es/jenkins/').status_code
+    artifactory = requests.get('https://repo.conwet.fi.upm.es/artifactory').status_code
+    if repo == 200:
         repo=True
     else:
         repo=False
-    if jenkins == "<Response [200]>":
+    if jenkins == 200:
         jenkins=True
     else:
         jenkins=False
-    if artifactory == "<Response [200]>":
+    if artifactory == 200:
         artifactory=True
     else:
         artifactory=False
