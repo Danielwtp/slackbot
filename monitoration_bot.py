@@ -73,6 +73,7 @@ class mainFuc(slackComunucation):
             else:
                 self.mensahito = "Backups: DOWN\n"#FIN backups
             self.estados = hydraServices.getStatus()
+            print(self.estados)
             if self.estados[0]:
                 self.mensahito = self.mensahito + "Repo: UP\n"
             else:
