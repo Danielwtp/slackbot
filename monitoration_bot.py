@@ -4,7 +4,7 @@ from slackclient import SlackClient
 import imp
 import time
 import sys
-from scripts import backups,hydraServices
+from scripts import backups,hydraServices,VPNCheck
 botUserOAuthAccessToken = ""
 
 
@@ -19,6 +19,7 @@ class slackComunucation(object):
         self.estadoBackups = True
         self.mensahito = ""
         self.estados = hydraServices.getStatus()
+
 
     def slackConnect(self):
         return self.slack_client.rtm_connect()
@@ -57,37 +58,40 @@ class mainFuc(slackComunucation):
     def decideWheterToRespond(self, input):
         if input:
             user, message, channel = input
-            return self.writeToSlack(channel, message)
+            if message = "status":
+                return self.writeToSlack(channel, self.mensahito)
 
     def run(self):
         self.slackConnect()
         BOTID = self.getBotID(self.appName)
         while(True):
-        #print(time.strftime("%M"))
-        #if time.strftime("%M") == "00":#cada hora revisa todo.
-            #if not self.lastOne == time.strftime("%Y-%m-%d") and  time.strftime("%H") == "9":#check del backup solo a las 9
-            self.today = time.strftime("%Y-%m-%d")
-            estadoBackups = backups.checkeo(self.today)
-            if backups:
-                self.mensahito = "Backups: UP\n"
-            else:
-                self.mensahito = "Backups: DOWN\n"#FIN backups
-            self.estados = hydraServices.getStatus()
-            print(self.estados)
-            if self.estados[0]:
-                self.mensahito = self.mensahito + "Repo: UP\n"
-            else:
-                self.mensahito = self.mensahito + "Repo: DOWN\n"
-            if self.estados[1]:
-                self.mensahito = self.mensahito + "Jenkins: UP\n"
-            else:
-                self.mensahito = self.mensahito + "Jenkins: DOWN\n"
-            if self.estados[2]:
-                self.mensahito = self.mensahito + "Artifactory: UP\n"
-            else:
-                self.mensahito = self.mensahito + "Artifactory: DOWN\n"
+            if time.strftime("%M") == "00":#cada hora revisa todo.
+                if not self.lastOne == time.strftime("%Y-%m-%d") and  time.strftime("%H") == "9":#check del backup solo a las 9
+                    self.today = time.strftime("%Y-%m-%d")
+                    estadoBackups = backups.checkeo(self.today)
+                    if backups:
+                        self.mensahito = "Backups: UP\n"
+                    else:
+                        self.mensahito = "Backups: DOWN\n"#FIN backups
+                self.estados = hydraServices.getStatus()
+                if self.estados[0]:
+                    self.mensahito = self.mensahito + "Repo: UP\n"
+                else:
+                    self.mensahito = self.mensahito + "Repo: DOWN\n"
+                if self.estados[1]:
+                    self.mensahito = self.mensahito + "Jenkins: UP\n"
+                else:
+                    self.mensahito = self.mensahito + "Jenkins: DOWN\n"
+                if self.estados[2]:
+                    self.mensahito = self.mensahito + "Artifactory: UP\n"
+                else:
+                    self.mensahito = self.mensahito + "Artifactory: DOWN\n"
+                if VPNCheck.getStatus():
+                    self.mensahito = self.mensahito + "VPN: UP\n"
+                else:
+                    self.mensahito = self.mensahito + "VPN: DOWN\n"
+                time.sleep(60)
 
-            self.writeToSlack(self.canal, self.mensahito)
             self.decideWheterToRespond(self.parseSlackInput(self.slackReadRTM(), BOTID))
             time.sleep(1)
 
