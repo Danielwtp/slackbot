@@ -11,15 +11,19 @@ botUserOAuthAccessToken = ""
 class slackComunucation(object):
     def __init__(self):
         self.slack_client = SlackClient(botUserOAuthAccessToken)
-        self.canal = "CJ381CD2Q"
+        self.canal = "C3Y7DDQ2Y"
         self.appName = "monitorationbot"
         self.backup = False
         self.today = time.strftime("%Y-%m-%d")
         self.lastOne = "2019-04-15"
         self.estadoBackups = True
-        self.mensahito = ""
-        self.estados = hydraServices.getStatus()
-
+        self.mensahito = "holo"
+        self.estados = [True,True,True]
+        self.msgBackups = ""
+        self.msgRepo = ""
+        self.msgJenk = ""
+        self.msgArt = ""
+        self.msgVpn = ""
 
     def slackConnect(self):
         return self.slack_client.rtm_connect()
@@ -58,7 +62,7 @@ class mainFuc(slackComunucation):
     def decideWheterToRespond(self, input):
         if input:
             user, message, channel = input
-            if message = "status":
+            if message == "status":
                 return self.writeToSlack(channel, self.mensahito)
 
     def run(self):
@@ -66,31 +70,34 @@ class mainFuc(slackComunucation):
         BOTID = self.getBotID(self.appName)
         while(True):
             if time.strftime("%M") == "00":#cada hora revisa todo.
+                hola = self.mensahito
                 if not self.lastOne == time.strftime("%Y-%m-%d") and  time.strftime("%H") == "9":#check del backup solo a las 9
                     self.today = time.strftime("%Y-%m-%d")
                     estadoBackups = backups.checkeo(self.today)
                     if backups:
-                        self.mensahito = "Backups: UP\n"
+                        self.msgBackups = "Backups: UP\n"
                     else:
-                        self.mensahito = "Backups: DOWN\n"#FIN backups
+                        self.msgBackups = "Backups: DOWN\n"#FIN backups
                 self.estados = hydraServices.getStatus()
                 if self.estados[0]:
-                    self.mensahito = self.mensahito + "Repo: UP\n"
+                    self.msgRepo = "Repo: UP\n"
                 else:
-                    self.mensahito = self.mensahito + "Repo: DOWN\n"
+                    self.msgRepo = "Repo: DOWN\n"
                 if self.estados[1]:
-                    self.mensahito = self.mensahito + "Jenkins: UP\n"
+                    self.msgJenk = "Jenkins: UP\n"
                 else:
-                    self.mensahito = self.mensahito + "Jenkins: DOWN\n"
+                    self.msgJenk = "Jenkins: DOWN\n"
                 if self.estados[2]:
-                    self.mensahito = self.mensahito + "Artifactory: UP\n"
+                    self.msgArt = "Artifactory: UP\n"
                 else:
-                    self.mensahito = self.mensahito + "Artifactory: DOWN\n"
-                if VPNCheck.getStatus():
-                    self.mensahito = self.mensahito + "VPN: UP\n"
+                    self.msgArt = "Artifactory: DOWN\n"
+                if VPNCheck.getStatus():#Vpn montado de mensage
+                    self.msgVpn = "VPN: UP\n"
                 else:
-                    self.mensahito = self.mensahito + "VPN: DOWN\n"
-                time.sleep(60)
+                    self.msgVpn = "VPN: DOWN\n"
+                self.mensahito = self.msgBackups + self.msgRepo + self.msgJenk + self.msgArt + self.msgVpn
+                if not hola == self.mensahito:
+                    self.writeToSlack(self.canal, self.mensahito)
 
             self.decideWheterToRespond(self.parseSlackInput(self.slackReadRTM(), BOTID))
             time.sleep(1)
