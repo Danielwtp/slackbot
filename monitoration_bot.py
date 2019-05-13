@@ -13,10 +13,9 @@ class slackComunucation(object):
         self.slack_client = SlackClient(botUserOAuthAccessToken)
         self.canal = "C3Y7DDQ2Y"
         self.appName = "monitorationbot"
-        self.backup = False
         self.today = time.strftime("%Y-%m-%d")
         self.lastOne = "2019-04-15"
-        self.estadoBackups = True
+        self.estadoBackups = backups.checkeo(self.today)
         self.estados =  hydraServices.getStatus()
         self.msgBackups = self.getBackUP()
         print("hola1")
@@ -61,7 +60,7 @@ class slackComunucation(object):
             return("Backups: UP\n")
         else:
             return("Backups: DOWN\n")
-            
+
     def slackConnect(self):
         return self.slack_client.rtm_connect()
 
@@ -111,6 +110,7 @@ class mainFuc(slackComunucation):
                 hola = self.mensahito
                 self.today = time.strftime("%Y-%m-%d")
                 if not self.lastOne == self.today and  time.strftime("%H") == "9":#check del backup solo a las 9
+                    self.lastOne=self.today
                     self.msgBackups = self.getBackUP()#FIN backups
                 self.estados = hydraServices.getStatus()
                 self.msgRepo = self.getRepo()
