@@ -19,11 +19,17 @@ class slackComunucation(object):
         self.estadoBackups = True
         self.estados =  hydraServices.getStatus()
         self.msgBackups = self.getBackUP()
+        print("hola1")
         self.msgRepo = self.getRepo()
+        print("hola2")
         self.msgJenk = self.getJenkins()
+        print("hola3")
         self.msgArt = self.getArtifac()
+        print("hola4")
         self.msgVpn = self.getVPN()
+        print("hola5")
         self.mensahito = self.msgBackups + self.msgRepo + self.msgJenk + self.msgArt + self.msgVpn
+        print(self.mensahito)
 
     def slackConnect(self):
         return self.slack_client.rtm_connect()
