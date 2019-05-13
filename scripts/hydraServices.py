@@ -1,8 +1,8 @@
 import requests
 def getStatus():
-    repo = requests.get('https://repo.conwet.fi.upm.es').status_code
-    jenkins = requests.get('https://build.conwet.fi.upm.es/jenkins/').status_code
-    artifactory = requests.get('https://repo.conwet.fi.upm.es/artifactory').status_code
+    repo = requests.get('https://repo.conwet.fi.upm.es', timeout=10).status_code
+    jenkins = requests.get('https://build.conwet.fi.upm.es/jenkins/', timeout=10).status_code
+    artifactory = requests.get('https://repo.conwet.fi.upm.es/artifactory', timeout=10).status_code
     if repo == 200:
         repo=True
     else:
