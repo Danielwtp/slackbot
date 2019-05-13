@@ -73,34 +73,34 @@ class mainFuc(slackComunucation):
 
     def getRepo():
         if self.estados[0]:
-            return "Repo: UP\n"
+            return("Repo: UP\n")
         else:
-            return "Repo: DOWN\n"
+            return("Repo: DOWN\n")
 
     def getJenkins():
         if self.estados[1]:
-            return "Jenkins: UP\n"
+            return("Jenkins: UP\n")
         else:
-            return "Jenkins: DOWN\n"
+            return("Jenkins: DOWN\n")
 
     def getArtifac():
         if self.estados[2]:
-            return "Artifactory: UP\n"
+            return("Artifactory: UP\n")
         else:
-            return "Artifactory: DOWN\n"
+            return("Artifactory: DOWN\n")
 
     def getVPN():
         if VPNCheck.getStatus():#Vpn montado de mensage
-            return "VPN: UP\n"
+            return("VPN: UP\n")
         else:
-            return "VPN: DOWN\n"
+            return("VPN: DOWN\n")
 
     def getBackUP():
         self.estadoBackups = backups.checkeo(self.today)
         if backups:
-            return "Backups: UP\n"
+            return("Backups: UP\n")
         else:
-            return "Backups: DOWN\n"
+            return("Backups: DOWN\n")
 
     def run(self):
         self.slackConnect()
