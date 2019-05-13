@@ -31,6 +31,37 @@ class slackComunucation(object):
         self.mensahito = self.msgBackups + self.msgRepo + self.msgJenk + self.msgArt + self.msgVpn
         print(self.mensahito)
 
+    def getRepo():
+        if self.estados[0]:
+            return("Repo: UP\n")
+        else:
+            return("Repo: DOWN\n")
+
+    def getJenkins():
+        if self.estados[1]:
+            return("Jenkins: UP\n")
+        else:
+            return("Jenkins: DOWN\n")
+
+    def getArtifac():
+        if self.estados[2]:
+            return("Artifactory: UP\n")
+        else:
+            return("Artifactory: DOWN\n")
+
+    def getVPN():
+        if VPNCheck.getStatus():#Vpn montado de mensage
+            return("VPN: UP\n")
+        else:
+            return("VPN: DOWN\n")
+
+    def getBackUP():
+        self.estadoBackups = backups.checkeo(self.today)
+        if backups:
+            return("Backups: UP\n")
+        else:
+            return("Backups: DOWN\n")
+            
     def slackConnect(self):
         return self.slack_client.rtm_connect()
 
@@ -70,37 +101,6 @@ class mainFuc(slackComunucation):
             user, message, channel = input
             if message == "status":
                 return self.writeToSlack(channel, self.mensahito)
-
-    def getRepo():
-        if self.estados[0]:
-            return("Repo: UP\n")
-        else:
-            return("Repo: DOWN\n")
-
-    def getJenkins():
-        if self.estados[1]:
-            return("Jenkins: UP\n")
-        else:
-            return("Jenkins: DOWN\n")
-
-    def getArtifac():
-        if self.estados[2]:
-            return("Artifactory: UP\n")
-        else:
-            return("Artifactory: DOWN\n")
-
-    def getVPN():
-        if VPNCheck.getStatus():#Vpn montado de mensage
-            return("VPN: UP\n")
-        else:
-            return("VPN: DOWN\n")
-
-    def getBackUP():
-        self.estadoBackups = backups.checkeo(self.today)
-        if backups:
-            return("Backups: UP\n")
-        else:
-            return("Backups: DOWN\n")
 
     def run(self):
         self.slackConnect()
