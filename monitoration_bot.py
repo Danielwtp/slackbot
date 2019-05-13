@@ -104,6 +104,7 @@ class mainFuc(slackComunucation):
 
     def run(self):
         self.slackConnect()
+        print("holi")
         BOTID = self.getBotID(self.appName)
         while(True):
             if time.strftime("%M") == "00":#cada hora revisa todo.
@@ -119,7 +120,7 @@ class mainFuc(slackComunucation):
                 self.mensahito = self.msgBackups + self.msgRepo + self.msgJenk + self.msgArt + self.msgVpn
                 if not hola == self.mensahito:
                     self.writeToSlack(self.canal, self.mensahito)
-
+            print(self.mensahito)
             self.decideWheterToRespond(self.parseSlackInput(self.slackReadRTM(), BOTID))
             time.sleep(1)
 
