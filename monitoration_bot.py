@@ -15,20 +15,13 @@ class slackComunucation(object):
         self.appName = "monitorationbot"
         self.today = time.strftime("%Y-%m-%d")
         self.lastOne = "2019-04-15"
-        self.estadoBackups = backups.checkeo(self.today)
-        self.estados =  hydraServices.getStatus()
-        self.msgBackups = self.getBackUP()
-        print("hola1")
-        self.msgRepo = self.getRepo()
-        print("hola2")
-        self.msgJenk = self.getJenkins()
-        print("hola3")
-        self.msgArt = self.getArtifac()
-        print("hola4")
-        self.msgVpn = self.getVPN()
-        print("hola5")
-        self.mensahito = self.msgBackups + self.msgRepo + self.msgJenk + self.msgArt + self.msgVpn
-        print(self.mensahito)
+        self.estadoBackups = False
+        self.estados =  [True,True,True]
+        self.msgBackups = ""
+        self.msgRepo = ""
+        self.msgJenk = ""
+        self.msgArt = ""
+        self.msgVpn = ""
 
     def getRepo():
         if self.estados[0]:
@@ -105,6 +98,15 @@ class mainFuc(slackComunucation):
         self.slackConnect()
         print("holi")
         BOTID = self.getBotID(self.appName)
+        self.estadoBackups = backups.checkeo(self.today)
+        self.estados =  hydraServices.getStatus()
+        self.msgBackups = self.getBackUP()
+        self.msgRepo = self.getRepo()
+        self.msgJenk = self.getJenkins()
+        self.msgArt = self.getArtifac()
+        self.msgVpn = self.getVPN()
+        self.mensahito = self.msgBackups + self.msgRepo + self.msgJenk + self.msgArt + self.msgVpn
+        self.writeToSlack(self.canal, self.mensahito)
         while(True):
             if time.strftime("%M") == "00":#cada hora revisa todo.
                 hola = self.mensahito
