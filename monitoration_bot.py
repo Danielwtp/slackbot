@@ -17,7 +17,7 @@ class slackComunucation(object):
         self.msgRepo = hydraServices.getRepo()
         self.msgJenk = hydraServices.getJenkins()
         self.msgArt = hydraServices.getArtifac()
-        self.msgVpn = backups.getVPN()
+        self.msgVpn = VPNCheck.getVPN()
         self.mensahito = self.msgBackups + self.msgRepo + self.msgJenk + self.msgArt + self.msgVpn
         print(self.mensahito)
 
