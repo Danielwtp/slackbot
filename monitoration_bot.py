@@ -13,48 +13,13 @@ class slackComunucation(object):
         self.slack_client = SlackClient(botUserOAuthAccessToken)
         self.canal = "C3Y7DDQ2Y"
         self.appName = "monitorationbot"
-        self.today = time.strftime("%Y-%m-%d")
-        self.lastOne = "2019-04-15"
-        self.estadoBackups = backups.checkeo(self.today)
-        self.estados =  hydraServices.getStatus()
-        self.msgBackups = self.getBackUP()
-        self.msgRepo = self.getRepo()
-        self.msgJenk = self.getJenkins()
-        self.msgArt = self.getArtifac()
-        self.msgVpn = self.getVPN()
+        self.msgBackups = backups.checkeo()
+        self.msgRepo = hydraServices.getRepo()
+        self.msgJenk = hydraServices.getJenkins()
+        self.msgArt = hydraServices.getArtifac()
+        self.msgVpn = backups.getVPN()
         self.mensahito = self.msgBackups + self.msgRepo + self.msgJenk + self.msgArt + self.msgVpn
         print(self.mensahito)
-
-    def getRepo():
-        if self.estados[0]:
-            return("Repo: UP\n")
-        else:
-            return("Repo: DOWN\n")
-
-    def getJenkins():
-        if self.estados[1]:
-            return("Jenkins: UP\n")
-        else:
-            return("Jenkins: DOWN\n")
-
-    def getArtifac():
-        if self.estados[2]:
-            return("Artifactory: UP\n")
-        else:
-            return("Artifactory: DOWN\n")
-
-    def getVPN():
-        if VPNCheck.getStatus():#Vpn montado de mensage
-            return("VPN: UP\n")
-        else:
-            return("VPN: DOWN\n")
-
-    def getBackUP():
-        self.estadoBackups = backups.checkeo(self.today)
-        if backups:
-            return("Backups: UP\n")
-        else:
-            return("Backups: DOWN\n")
 
     def slackConnect(self):
         return self.slack_client.rtm_connect()
@@ -95,26 +60,27 @@ class mainFuc(slackComunucation):
             user, message, channel = input
             if message == "status":
                 return self.writeToSlack(channel, self.mensahito)
+            if message == "help"
+                return self.writeToSlack(channel, "\"@Monitoration_Bot status\": devuelve el estado actual de las maquinas")
 
     def run(self):
         self.slackConnect()
         print("holi")
         BOTID = self.getBotID(self.appName)
         while(True):
-            if time.strftime("%M") == "00":#cada hora revisa todo.
-                hola = self.mensahito
-                self.today = time.strftime("%Y-%m-%d")
-                if not self.lastOne == self.today and  time.strftime("%H") == "9":#check del backup solo a las 9
-                    self.lastOne=self.today
-                    self.msgBackups = self.getBackUP()#FIN backups
-                self.estados = hydraServices.getStatus()
-                self.msgRepo = self.getRepo()
-                self.msgJenk = self.getJenkins()
-                self.msgArt = self.getArtifac()
-                self.msgVpn = self.getVPN()
-                self.mensahito = self.msgBackups + self.msgRepo + self.msgJenk + self.msgArt + self.msgVpn
-                if not hola == self.mensahito:
-                    self.writeToSlack(self.canal, self.mensahito)
+            if not (time.strftime("%H") == 1 or time.strftime("%H") == 2):
+                if time.strftime("%M") == "00":#cada hora revisa todo, excepto el backups
+                    hola = self.mensahito
+                    if time.strftime("%H") == "9":#check del backup solo a las 9
+                        self.msgBackups = backups.checkeo()#FIN backups
+                    self.estados = hydraServices.getStatus()
+                    self.msgRepo = hydraServices.getRepo()
+                    self.msgJenk = hydraServices.getJenkins()
+                    self.msgArt = hydraServices.getArtifac()
+                    self.msgVpn = VPNCheck.getVPN()
+                    self.mensahito = self.msgBackups + self.msgRepo + self.msgJenk + self.msgArt + self.msgVpn
+                    if not hola == self.mensahito:
+                        self.writeToSlack(self.canal, self.mensahito)
             print(self.mensahito)
             self.decideWheterToRespond(self.parseSlackInput(self.slackReadRTM(), BOTID))
             time.sleep(1)
