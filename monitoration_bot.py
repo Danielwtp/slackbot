@@ -60,7 +60,7 @@ class mainFuc(slackComunucation):
             user, message, channel = input
             if message == "status":
                 return self.writeToSlack(channel, self.mensahito)
-            if message == "help"
+            if message == "help":
                 return self.writeToSlack(channel, "\"@Monitoration_Bot status\": devuelve el estado actual de las maquinas")
 
     def run(self):
