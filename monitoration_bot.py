@@ -13,7 +13,7 @@ class slackComunucation(object):
         self.slack_client = SlackClient(botUserOAuthAccessToken)
         self.canal = "C3Y7DDQ2Y"
         self.appName = "monitorationbot"
-        self.msgBackups = backups.checkeo()
+        self.msgBackups = backups.checkeo(time.strftime("%Y-%m-%d"))
         self.msgRepo = hydraServices.getRepo()
         self.msgJenk = hydraServices.getJenkins()
         self.msgArt = hydraServices.getArtifac()
@@ -72,7 +72,7 @@ class mainFuc(slackComunucation):
                 if time.strftime("%M") == "00":#cada hora revisa todo, excepto el backups
                     hola = self.mensahito
                     if time.strftime("%H") == "9":#check del backup solo a las 9
-                        self.msgBackups = backups.checkeo()#FIN backups
+                        self.msgBackups = backups.checkeo(time.strftime("%Y-%m-%d"))#FIN backups
                     self.estados = hydraServices.getStatus()
                     self.msgRepo = hydraServices.getRepo()
                     self.msgJenk = hydraServices.getJenkins()
