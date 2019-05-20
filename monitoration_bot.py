@@ -22,7 +22,7 @@ class slackComunucation(object):
         print(self.mensahito)
 
     def slackConnect(self):
-        return self.slack_client.rtm_connect()
+        return self.slack_client.rtm_connect(auto_reconnect=True)
 
     def slackReadRTM(self):
         return self.slack_client.rtm_read()
