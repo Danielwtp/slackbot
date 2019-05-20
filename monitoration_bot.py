@@ -64,6 +64,7 @@ class mainFuc(slackComunucation):
                 return self.writeToSlack(channel, "\"@Monitoration_Bot status\": devuelve el estado actual de las maquinas")
             else:
                 return self.writeToSlack(channel, "\"@Monitoration_Bot status\": devuelve el estado actual de las maquinas")
+
     def run(self):
         self.slackConnect()
         BOTID = self.getBotID(self.appName)
